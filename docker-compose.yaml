@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  db:
+    container_name: db
+    image: postgis/postgis
+    volumes:
+      - investor_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.dev
+  web:
+    container_name: web
+    build:
+      context: ./app
+    env_file: ./.env.dev
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./app/:/usr/src/app/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  investor_data:

@@ -1,0 +1,11 @@
+# .env.dev
+.env.prod
+cryptos
+app/geoip
+app/logs
+app/db.sqlite3
+app/statics
+.env
+*.pyc
+docker-compose.prod.yaml
+# docker-compose.yaml

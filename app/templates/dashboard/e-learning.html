@@ -1,0 +1,31 @@
+{% extends "dashboard/layouts/base.html" %}
+{% load static %}
+
+{% block title %} Withdrawal Requests {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<section>
+  <div class="row my-3 justify-content-center">
+    <div class="col-md-6 col-10">
+      <form class="navbar-form">
+        <div class="input-group no-border">
+          <input name="q" type="text" value="{{request.GET.q}}" class="form-control" placeholder="Search...">
+          <button type="submit" class="btn btn-white btn-round btn-just-icon">
+            <i class="material-icons">search</i>
+            <div class="ripple-container"></div>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</section>
+
+
+
+
+{% endblock content %}

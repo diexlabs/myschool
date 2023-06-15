@@ -1,0 +1,146 @@
+{% extends "dashboard/layouts/base.html" %}
+{% load humanize %}
+
+{% block title %} {{user.username}} Profile {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="row">
+  <div class="col-md-4 order-md-2">
+    <div class="card card-profile">
+      <div class="card-body pt-0">
+        <div class="row">
+          <div class="col">
+            <div class="card-profile-stats row justify-content-center">
+              <div class="col">
+                <div class="heading">{{user.downlines.count}}</div>
+                <span class="description">Downlines</span>
+              </div>
+              <div class="col">
+                <div class="heading">{{user.investments.count}}</div>
+                <div class="description">Investments</div>
+              </div>
+              <div class="col">
+                <div class="heading">{{user.withdrawals.count}}</div>
+                <div class="description">Withdrawals</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-center">
+          <h5 class="h3">
+            {{ request.user.username }}
+          </h5>
+          <div class="h5 font-weight-300">
+            {{ request.user.email }}
+          </div>
+          <div class="h5 mt-4">
+            <i class="ni business_briefcase-24 mr-2"></i>User since
+          </div>
+          <div>
+            <i class="ni education_hat mr-2"></i>{{user.date_joined | timesince}}
+          </div>
+        </div>
+        <div>
+          <a class="btn btn-primary" data-toggle="collapse" href="#collapseLocation" role="button" aria-expanded="false"
+            aria-controls="collapseLocation">
+            Real Time Location
+          </a>
+          <div class="collapse" id="collapseLocation">
+            <div class="card card-body">
+              {% for key,value in profile.profile.data.items %}
+              <div>{{key}} : {{value}}</div>
+              {% empty %}
+              <div class="jumbotron text-center">No details recorded!</div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-8 order-md-1">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">User Info</h4>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="bmd-label-floating">Username</label>
+                <input type="text" class="form-control" disabled value="{{ profile.username }}">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating">Email address</label>
+                <input type="email" class="form-control" value="{{ profile.email }}" disabled>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label class="bmd-label-floating">Verified</label>
+                <input type="text" class="form-control" disabled value="{{ profile.emailaddress_set.first.verified }}">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating">Fist Name</label>
+                <input type="text" class="form-control" value="{{profile.profile.first_name}}" disabled>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating">Last Name</label>
+                <input type="text" class="form-control" value="{{profile.profile.last_name}}" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating">Adress</label>
+                <input type="text" class="form-control" value="{{profile.profile.address}}" disabled>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="bmd-label-floating">City</label>
+                <input type="text" class="form-control" value="{{profile.profile.city}}" disabled>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="bmd-label-floating">Country</label>
+                <input type="text" class="form-control" value="{{profile.profile.country}}" disabled>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="bmd-label-floating">Postal Code</label>
+                <input type="text" class="form-control" value="{{profile.profile.postal_code}}" disabled>
+              </div>
+            </div>
+          </div>
+
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

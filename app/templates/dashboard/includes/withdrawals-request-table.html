@@ -1,0 +1,31 @@
+<div class="card-body" style="overflow-x: auto;">
+    <table class="table text-nowrap" style="overflow-x: scroll;">
+        <thead class="text-primary">
+            <th>User</th>
+            <th>Amount</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Address</th>
+            <th></th>
+        </thead>
+        <tbody>
+            {% for withdrawal in page_obj %}
+            <tr>
+                <td><a href="{{payment.user.get_absolute_url}}">{{withdrawal.user.username}}</a></td>
+                <td>${{withdrawal.amount}}</td>
+                <td>{{withdrawal.timestamp | date:'d/m/Y'}}</td>
+                <td>{{withdrawal.status | upper}}</td>
+                <td>{{withdrawal.address}}</td>
+                <td>
+                    <div class="d-flex justify-content-evenly">
+                        <a href="{% url 'dashboard:approve_withdrawal' pk=withdrawal.id %}"
+                            class="btn btn-outline-primary">Approve</a>
+                        <a href="{% url 'dashboard:decline_withdrawal' pk=withdrawal.id %}"
+                            class="btn btn-outline-danger">Reject</a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

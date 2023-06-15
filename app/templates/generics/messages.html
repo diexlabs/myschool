@@ -1,0 +1,26 @@
+<!-- messages alert block -->
+{% if messages %}
+<div class="alert-box">
+    {% for message in messages %}
+        <div class="alert {% if message.tags %}alert-{{message.tags}}{% endif %} alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="close btn-close" data-dismiss="alert" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+<!-- messages alert ends -->
+
+<style>
+    .alert-box {
+        position: fixed;
+        width: 100vw;
+        top: 0px;
+        left: 0px;
+        padding: 30px;
+        z-index: 10000000;
+        display: none;
+    }
+</style>

@@ -1,0 +1,81 @@
+{% load static %}
+<div class="sidebar" data-color="purple" data-background-color="white"
+  data-image="{% static 'management/img/sidebar-1.jpg' %}">
+  <div class="logo">
+    <div class="d-flex justify-content-center">
+      <img src="{% static 'images/book.svg' %}" alt="">
+    </div>
+  </div>
+  <div class="sidebar-wrapper">
+    <ul class="nav">
+      {% if request.user.is_authenticated %}
+
+      <li class="nav-item {% if 'index' in segment %} active {% endif %}">
+        <a class="nav-link" href="{% url 'dashboard:overview' %}">
+          <i class="material-icons">dashboard</i>
+          <p>Overview</p>
+        </a>
+      </li>
+      <li class="nav-item {% if 'page-user' in segment %} active {% endif %}">
+        <a class="nav-link" href="{% url 'dashboard:profile' %}">
+          <i class="material-icons">person</i>
+          <p>Profile</p>
+        </a>
+      </li>
+      <li class="nav-item {% if 'ui-tables' in segment %} active {% endif %}">
+        <a class="nav-link" href="{% url 'dashboard:school_fees' %}">
+          <i class="material-icons">receipt</i>
+          <p>School Fees</p>
+        </a>
+      </li>
+
+      <li class="nav-item {% if 'ui-icons' in segment %} active {% endif %}">
+        <a class="nav-link" href="{% url 'dashboard:hostel_allocation' %}">
+          <i class="material-icons">bubble_chart</i>
+          <p>Hostel Allocation</p>
+        </a>
+      </li>
+      <li class="nav-item {% if 'ui-notifications' in segment %} active {% endif %}">
+        <a class="nav-link" href="{% url 'dashboard:course_registration' %}">
+          <i class="material-icons">event_note</i>
+          <p>Course Registration</p>
+        </a>
+      </li>
+      <li class="nav-item {% if 'ui-typography' in segment %} active {% endif %}">
+        <a class="nav-link" href="{% url 'dashboard:results' %}">
+          <i class="material-icons">library_books</i>
+          <p>Results</p>
+        </a>
+      </li>
+      <li class="nav-item {% if 'ui-typography' in segment %} active {% endif %}">
+        <a class="nav-link" href="{% url 'dashboard:elearning' %}">
+          <i class="material-icons">local_library</i>
+          <p>E-Learning</p>
+        </a>
+      </li>
+      <li class="nav-item {% if 'ui-maps' in segment %} active {% endif %}">
+        <a class="nav-link" href="{% url 'dashboard:payments' %}">
+          <i class="material-icons">payments</i>
+          <p>Payments</p>
+        </a>
+      </li>
+      <li class="nav-item {% if 'ui-notifications' in segment %} active {% endif %}">
+        <a class="nav-link" href="{% url 'dashboard:clearance' %}">
+          <i class="material-icons">clear_all</i>
+          <p>Clearance</p>
+        </a>
+      </li>
+      
+
+      <li class="nav-item ">
+        <a class="nav-link" href="{% url 'account_logout' %}">
+          <i class="material-icons">directions_run</i>
+          <p>Logout</p>
+        </a>
+      </li>
+
+      {% endif %}
+    </ul>
+  </div>
+
+</div>

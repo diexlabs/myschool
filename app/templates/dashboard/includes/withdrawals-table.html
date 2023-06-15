@@ -1,0 +1,56 @@
+<div class="card card-plain table-responsive">
+    <div class="card-header card-header-primary">
+      <h4 class="card-title">{{table_title | default:'Recent Withdrawals'}} </h4>
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-hover text-nowrap">
+        <thead class="text-primary">
+          <th>User</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Time</th>
+          <th>Address</th>
+        </thead>
+        <tbody>
+          {% for withdrawal in withdrawals %}
+          <tr>
+            <td><a href="{{withdrawal.user.get_absolute_url}}">{{withdrawal.user.username}}</a></td>
+            <td>${{withdrawal.amount | floatformat}}</td>
+            <td>{{withdrawal.status}}</td>
+            <td>{{withdrawal.timestamp | timesince}}</td>
+            <td>{{withdrawal.address}}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if include_footer %}
+    <div class="card-footer py-4">
+      <nav aria-label="...">
+        <ul class="pagination justify-content-end mb-0">
+          {% if withdrawals.has_previous %}
+          <li class="page-item disabled">
+              <a class="page-link" href="?page={{withdrawals.previous_page_number}}" tabindex="-1">
+                <i class="fas fa-angle-left"></i>
+                <span class="sr-only">Previous</span>
+              </a>
+          </li>
+          {% endif %}
+          
+          <li class="page-item active">
+            <a class="page-link" >{{withdrawals.number}} <span class="sr-only">(current)</span></a>
+          </li>
+         {% if withdrawals.has_next %}
+         <li class="page-item">
+          <a class="page-link" href="?page={{withdrawals.next_page_number}}">
+            <i class="fas fa-angle-right"></i>
+            <span class="sr-only">Next</span>
+          </a>
+        </li>
+         {% endif %}
+        </ul>
+      </nav>
+    </div>
+    {% endif %}
+  </div>

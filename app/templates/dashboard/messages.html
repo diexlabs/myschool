@@ -1,0 +1,66 @@
+{% extends "dashboard/layouts/base.html" %}
+{% load static %}
+
+{% block title %} Incoming Messages {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+
+<div class="row justify-content-center">
+    <div class="col-md-7 col-11">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Email Users</h4>
+                <hr>
+
+                <form action="{% url 'dashboard:messages' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group email">
+                        <label class="bmd-label-floating">Email</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Title</label>
+                        {{ form.title }}
+                    </div>
+
+                    <div class="form-group">
+                        <label class="bmd-label-floating">Email Message.</label>
+                        {{form.message}}
+                    </div>
+
+                    <!-- <div class="form-check">
+                            {{form.all}}
+                            <label class="form-check-label" for="emailAllUsers">
+                              Email all users
+                            </label>
+                        </div> -->
+
+                    <div class="d-flex justify-content-end">
+                        <input type="submit" value="Send" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+{% block javascripts %}
+<!-- <script>
+        $(document).ready(() => {
+            let checkbox = $(`#emailAllUsers`);
+            checkbox.change(() => {
+                if (checkbox.prop('checked')) {
+                    $('.email').hide();
+                } else {
+                    $('.email').show()
+                }
+            })
+        })
+    </script> -->
+{% endblock javascripts %}
